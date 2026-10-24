@@ -1,0 +1,3 @@
+import {integrate,lyapunov,divergence,bifurcation,arena,ensemble,recurrence,boxDimension,inverseSearch,controlled,noisySeries,networkSimulation,fitLogistic,identify} from './science.js';
+const tasks={simulate:integrate,lyapunov,divergence,bifurcation,arena,ensemble,recurrence,boxDimension,inverseSearch,controlled,noisySeries,networkSimulation,fitLogistic,identify};
+self.onmessage=({data:{id,task,args}})=>{try{if(!(task in tasks))throw Error('Unsupported computation.');const result=tasks[task](...args);self.postMessage({id,result});}catch(error){self.postMessage({id,error:error.message});}};
